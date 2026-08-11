@@ -12,10 +12,6 @@ return {
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
     end,
-    -- VimEnter as well as cmd/keys: loading only needs to be lazy for the
-    -- on-demand triggers, but we need this to run at startup regardless,
-    -- to decide whether to land in the file browser.
-    event = "VimEnter",
     cmd = "Oil",
     keys = {
       { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
@@ -25,13 +21,5 @@ return {
         show_hidden = true,
       },
     },
-    config = function(_, opts)
-      require("oil").setup(opts)
-      -- Land in the file browser instead of an empty buffer when nvim
-      -- is launched with no file argument.
-      if vim.fn.argc() == 0 then
-        require("oil").open()
-      end
-    end,
   },
 }

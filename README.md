@@ -55,9 +55,9 @@ folding lets you collapse a scene (`za`) without splitting it into its own
 file. See Keymaps below for how to move around that layout without a
 sidebar tree.
 
-Launching `nvim` with no file argument opens oil (`:Oil`) at the current
-directory instead of an empty buffer, so you land straight in the
-manuscript listing.
+Launching `nvim` with no file argument shows a start screen (mini.starter)
+instead of an empty buffer, with shortcuts to find a chapter, grep the
+manuscript, reopen a recent file, browse the directory (oil), or quit.
 
 ## Keymaps
 
