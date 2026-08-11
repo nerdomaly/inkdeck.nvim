@@ -57,7 +57,8 @@ sidebar tree.
 
 ## Keymaps
 
-Leader is `<space>`.
+Leader is `<space>`. Press `<leader>` and pause to see a popup of all
+available chords (which-key.nvim).
 
 | Keymap | Action |
 | --- | --- |

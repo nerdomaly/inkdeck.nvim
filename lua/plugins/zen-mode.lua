@@ -21,6 +21,15 @@ return {
   {
     "folke/twilight.nvim",
     cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
-    opts = {},
+    opts = {
+      -- Twilight indexes the treesitter parser for whatever buffer it
+      -- enters without checking for nil, which crashes (E5108) on any
+      -- buffer without one attached: an empty buffer, a non-markdown
+      -- file, or a special-filetype popup from telescope/oil/which-key
+      -- opened while zen mode is active. Falls back to dimming a fixed
+      -- window of lines around the cursor instead of exact paragraph
+      -- boundaries, but never crashes.
+      treesitter = false,
+    },
   },
 }

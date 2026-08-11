@@ -48,5 +48,6 @@ First batch of creative-writing plugins is in, one file per plugin/group under `
 - `autosave.lua` — okuuva/auto-save.nvim (the maintained fork; the original Pocco81 repo is stale).
 - `telescope.lua` — nvim-telescope/telescope.nvim for fuzzy-finding (`<leader>ff`) and grepping (`<leader>fg`) across chapter files; plain Lua sorter, no fzf-native build step.
 - `oil.lua` — stevearc/oil.nvim for on-demand directory editing (`-`) instead of a persistent sidebar tree; replaces netrw.
+- `which-key.lua` — folke/which-key.nvim, shows a popup of available chords and their descriptions when a key sequence (e.g. `<leader>`) is pressed and paused on.
 
 Not yet picked: anything beyond this batch (e.g. goal tracking beyond a plain word count, thesaurus lookups) — revisit if the need comes up.
