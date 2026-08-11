@@ -55,6 +55,10 @@ folding lets you collapse a scene (`za`) without splitting it into its own
 file. See Keymaps below for how to move around that layout without a
 sidebar tree.
 
+Launching `nvim` with no file argument opens oil (`:Oil`) at the current
+directory instead of an empty buffer, so you land straight in the
+manuscript listing.
+
 ## Keymaps
 
 Leader is `<space>`. Press `<leader>` and pause to see a popup of all
