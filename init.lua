@@ -23,6 +23,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("config.options")
 require("config.keymaps")
+require("config.statusline")
 
 require("lazy").setup({
   spec = {
