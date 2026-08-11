@@ -27,8 +27,8 @@ Any programming/LSP support that gets added should stay minimal — just enough 
 
 ## Architecture
 
-- `init.lua` — entry point. Bootstraps lazy.nvim by cloning it into `stdpath('data')/lazy/lazy.nvim` if missing, then loads `config.options`, `config.keymaps`, `config.statusline`, and calls `require("lazy").setup(...)` with `spec = { { import = "plugins" } }`.
-- `lua/config/options.lua` — all editor options tuned for prose (wrap/linebreak, spell, conceallevel, disabled number/signcolumn, etc.). This is the place for any new global editor behavior, not scattered `vim.opt` calls elsewhere.
+- `init.lua` — entry point. Sets `vim.g.mapleader = " "` (must happen before any `<leader>` keymaps are defined), bootstraps lazy.nvim by cloning it into `stdpath('data')/lazy/lazy.nvim` if missing, then loads `config.options`, `config.keymaps`, `config.statusline`, and calls `require("lazy").setup(...)` with `spec = { { import = "plugins" } }`.
+- `lua/config/options.lua` — all editor options tuned for prose (wrap/linebreak, spell, conceallevel, disabled number/signcolumn/foldcolumn, etc.). This is the place for any new global editor behavior, not scattered `vim.opt` calls elsewhere.
 - `lua/config/keymaps.lua` — writing-oriented keymaps.
 - `lua/config/statusline.lua` — sets `vim.opt.statusline` directly (no statusline plugin). Live word count plus a battery percentage that changes icon/color at low levels, since zen mode hides the OS battery indicator behind a full-screen buffer.
 - `lua/plugins/*.lua` — **one file per plugin or plugin group**, each returning a lazy.nvim plugin spec table (or list of tables). lazy.nvim auto-imports every file in this directory via the `{ import = "plugins" }` spec in `init.lua` — adding a new plugin means adding a new file here, nothing else needs to be wired up.
@@ -42,9 +42,11 @@ First batch of creative-writing plugins is in, one file per plugin/group under `
 - `colorscheme.lua` — rose-pine, the original bootstrap-proving plugin.
 - `zen-mode.lua` — folke/zen-mode.nvim + folke/twilight.nvim for focus mode (centers the buffer, dims everything but the current paragraph). `<leader>zz` toggles it.
 - `wordy.lua` — preservim/vim-wordy for lightweight weak-word/cliche highlighting, no external binary.
-- `treesitter.lua` — nvim-treesitter, scoped to just the `markdown`/`markdown_inline` parsers; exists only as a dependency for render-markdown.lua, not general IDE support.
+- `treesitter.lua` — nvim-treesitter, scoped to just the `markdown`/`markdown_inline` parsers; exists as a dependency for render-markdown.lua, not general IDE support, and also wires up heading-based folding (`foldexpr`) for markdown buffers so scene breaks within a chapter can collapse.
 - `markdown-render.lua` — MeanderingProgrammer/render-markdown.nvim for in-buffer concealed rendering.
 - `markdown-preview.lua` — iamcco/markdown-preview.nvim for browser-based live preview (`<leader>mp`); needs Node.js on the system.
 - `autosave.lua` — okuuva/auto-save.nvim (the maintained fork; the original Pocco81 repo is stale).
+- `telescope.lua` — nvim-telescope/telescope.nvim for fuzzy-finding (`<leader>ff`) and grepping (`<leader>fg`) across chapter files; plain Lua sorter, no fzf-native build step.
+- `oil.lua` — stevearc/oil.nvim for on-demand directory editing (`-`) instead of a persistent sidebar tree; replaces netrw.
 
-Not yet picked: anything beyond this first batch (e.g. goal tracking beyond a plain word count, outline/chapter navigation, thesaurus lookups) — revisit if the need comes up.
+Not yet picked: anything beyond this batch (e.g. goal tracking beyond a plain word count, thesaurus lookups) — revisit if the need comes up.

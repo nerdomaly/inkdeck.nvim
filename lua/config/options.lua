@@ -26,6 +26,7 @@ opt.relativenumber = false
 opt.signcolumn = "no"
 opt.cursorline = false
 opt.laststatus = 2
+opt.foldcolumn = "0"
 
 -- Prose files rarely need tabs-as-code; keep indentation simple.
 opt.expandtab = true

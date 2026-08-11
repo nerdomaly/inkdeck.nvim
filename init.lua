@@ -21,6 +21,9 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Must be set before any <leader> keymaps are defined.
+vim.g.mapleader = " "
+
 require("config.options")
 require("config.keymaps")
 require("config.statusline")

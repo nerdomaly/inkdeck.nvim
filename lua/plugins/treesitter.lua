@@ -12,6 +12,12 @@ return {
         pattern = "markdown",
         callback = function()
           vim.treesitter.start()
+          -- Fold by heading so scene breaks can collapse without
+          -- splitting into separate files. foldlevel = 99 keeps
+          -- everything open on entry; za/zc to fold a scene manually.
+          vim.wo.foldmethod = "expr"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldlevel = 99
         end,
       })
     end,

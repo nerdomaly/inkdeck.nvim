@@ -32,9 +32,44 @@ plugins automatically.
 - `init.lua` — entry point; bootstraps lazy.nvim and loads config/plugins.
 - `lua/config/options.lua` — editor options tuned for prose.
 - `lua/config/keymaps.lua` — writing-oriented keymaps.
+- `lua/config/statusline.lua` — statusline: live word count + battery.
 - `lua/plugins/*.lua` — one file per plugin (or plugin group); every file
   in this directory is auto-loaded by lazy.nvim.
 - `lazy-lock.json` — pinned plugin versions, committed for reproducibility.
+
+## Organizing a manuscript
+
+inkdeck.nvim doesn't scaffold a manuscript for you, but the bundle is built
+around a simple layout: one markdown file per chapter, in a flat
+directory, numbered so they sort in reading order.
+
+```
+manuscript/
+  01-arrival.md
+  02-the-storm.md
+  03-the-return.md
+```
+
+Scene breaks within a chapter are just `##` headings — treesitter-based
+folding lets you collapse a scene (`za`) without splitting it into its own
+file. See Keymaps below for how to move around that layout without a
+sidebar tree.
+
+## Keymaps
+
+Leader is `<space>`.
+
+| Keymap | Action |
+| --- | --- |
+| `<leader>w` | Save |
+| `<leader>ts` | Toggle spellcheck |
+| `]s` / `[s` | Next / previous misspelling |
+| `<leader>zz` | Toggle zen mode |
+| `<leader>mp` | Toggle markdown preview |
+| `<leader>ff` | Find chapter file (telescope) |
+| `<leader>fg` | Grep manuscript (telescope) |
+| `<leader>fr` | Recent files (telescope) |
+| `-` | Open parent directory (oil) |
 
 ## Adding a plugin
 
