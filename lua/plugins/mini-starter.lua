@@ -20,11 +20,11 @@ return {
     opts = {
       header = header,
       items = {
-        { name = "Find chapter", action = "Telescope find_files", section = "Manuscript" },
-        { name = "Grep manuscript", action = "Telescope live_grep", section = "Manuscript" },
-        { name = "Recent files", action = "Telescope oldfiles", section = "Manuscript" },
-        { name = "Browse files", action = "Oil", section = "Manuscript" },
-        { name = "Quit", action = "qa", section = "Manuscript" },
+        { name = "Find document", action = "Telescope find_files", section = "Documents" },
+        { name = "Grep documents", action = "Telescope live_grep", section = "Documents" },
+        { name = "Recent files", action = "Telescope oldfiles", section = "Documents" },
+        { name = "Browse files", action = "Oil", section = "Documents" },
+        { name = "Quit", action = "qa", section = "Documents" },
       },
     },
     config = function(_, opts)

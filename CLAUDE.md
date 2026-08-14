@@ -27,10 +27,11 @@ Any programming/LSP support that gets added should stay minimal — just enough 
 
 ## Architecture
 
-- `init.lua` — entry point. Sets `vim.g.mapleader = " "` (must happen before any `<leader>` keymaps are defined), bootstraps lazy.nvim by cloning it into `stdpath('data')/lazy/lazy.nvim` if missing, then loads `config.options`, `config.keymaps`, `config.statusline`, and calls `require("lazy").setup(...)` with `spec = { { import = "plugins" } }`.
+- `init.lua` — entry point. Sets `vim.g.mapleader = " "` (must happen before any `<leader>` keymaps are defined), bootstraps lazy.nvim by cloning it into `stdpath('data')/lazy/lazy.nvim` if missing, then loads `config.options`, `config.keymaps`, `config.statusline`, `config.rootdir`, and calls `require("lazy").setup(...)` with `spec = { { import = "plugins" } }`.
 - `lua/config/options.lua` — all editor options tuned for prose (wrap/linebreak, spell, conceallevel, disabled number/signcolumn/foldcolumn, etc.). This is the place for any new global editor behavior, not scattered `vim.opt` calls elsewhere.
 - `lua/config/keymaps.lua` — writing-oriented keymaps.
 - `lua/config/statusline.lua` — sets `vim.opt.statusline` directly (no statusline plugin). Live word count plus a battery percentage that changes icon/color at low levels, since zen mode hides the OS battery indicator behind a full-screen buffer.
+- `lua/config/rootdir.lua` — on `VimEnter`, `:cd`s to the nearest ancestor directory containing `.git`, so Telescope/Oil operate on the whole document repo regardless of which subfolder Neovim was launched from.
 - `lua/plugins/*.lua` — **one file per plugin or plugin group**, each returning a lazy.nvim plugin spec table (or list of tables). lazy.nvim auto-imports every file in this directory via the `{ import = "plugins" }` spec in `init.lua` — adding a new plugin means adding a new file here, nothing else needs to be wired up.
 - `lazy-lock.json` — pinned plugin commit hashes, intentionally committed (not gitignored) for reproducible installs across machines.
 - `install.sh` — idempotent installer: if `~/.config/nvim` already exists and isn't already this repo, it's moved to a timestamped backup (`~/.config/nvim.bak-<timestamp>`) before symlinking this repo into place. Never deletes an existing config.
@@ -46,7 +47,7 @@ First batch of creative-writing plugins is in, one file per plugin/group under `
 - `markdown-render.lua` — MeanderingProgrammer/render-markdown.nvim for in-buffer concealed rendering.
 - `markdown-preview.lua` — iamcco/markdown-preview.nvim for browser-based live preview (`<leader>mp`); needs Node.js on the system.
 - `autosave.lua` — okuuva/auto-save.nvim (the maintained fork; the original Pocco81 repo is stale).
-- `telescope.lua` — nvim-telescope/telescope.nvim for fuzzy-finding (`<leader>ff`) and grepping (`<leader>fg`) across chapter files; plain Lua sorter, no fzf-native build step.
+- `telescope.lua` — nvim-telescope/telescope.nvim for fuzzy-finding (`<leader>ff`) and grepping (`<leader>fg`) across documents; plain Lua sorter, no fzf-native build step. Excludes common repo scaffolding (`scripts/`, `README.md`, `CLAUDE.md`, the generated `INDEX.md`) from results via `file_ignore_patterns`.
 - `oil.lua` — stevearc/oil.nvim for on-demand directory editing (`-`) instead of a persistent sidebar tree; replaces netrw.
 - `which-key.lua` — folke/which-key.nvim, shows a popup of available chords and their descriptions when a key sequence (e.g. `<leader>`) is pressed and paused on.
 - `mini-starter.lua` — nvim-mini/mini.starter, a start screen shown instead of an empty buffer when nvim is launched with no file argument; ASCII-art header plus shortcuts for the telescope/oil actions above. Its own `autoopen` logic decides when to show, not a hand-rolled check.

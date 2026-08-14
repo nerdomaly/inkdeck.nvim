@@ -27,6 +27,7 @@ vim.g.mapleader = " "
 require("config.options")
 require("config.keymaps")
 require("config.statusline")
+require("config.rootdir")
 
 require("lazy").setup({
   spec = {

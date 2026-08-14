@@ -1,4 +1,4 @@
--- Fuzzy-find and grep across chapter files. Plain Lua sorter only (no
+-- Fuzzy-find and grep across documents. Plain Lua sorter only (no
 -- fzf-native build step) to keep this bundle easy to clone and install.
 
 return {
@@ -7,10 +7,16 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "Telescope",
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find chapter file" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep manuscript" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find document" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep documents" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent files" },
     },
-    opts = {},
+    opts = {
+      defaults = {
+        -- Keep results scoped to actual writing, not repo scaffolding
+        -- (tooling scripts, README/CLAUDE docs, the generated index).
+        file_ignore_patterns = { "^scripts/", "^README%.md$", "^CLAUDE%.md$", "^INDEX%.md$" },
+      },
+    },
   },
 }
