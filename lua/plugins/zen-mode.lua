@@ -10,6 +10,15 @@ return {
       { "<leader>zz", "<cmd>ZenMode<cr>", desc = "Toggle zen mode" },
     },
     opts = {
+      plugins = {
+        options = {
+          -- bufferline manages this option itself (0 when there's one
+          -- buffer, 2 once there are several). Zen-mode's plugins.options
+          -- mechanism snapshots whatever that value is before hiding it,
+          -- and restores that exact value when zen mode closes.
+          showtabline = 0,
+        },
+      },
       on_open = function()
         require("twilight").enable()
       end,

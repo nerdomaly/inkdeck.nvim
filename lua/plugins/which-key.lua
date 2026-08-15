@@ -10,6 +10,15 @@ return {
       -- Small, content-sized popup in the corner rather than a
       -- full-width bar, to keep footprint minimal in a zen-mode setup.
       preset = "helix",
+      spec = {
+        { "<leader>b", group = "Buffer" },
+        { "<leader>f", group = "Find" },
+        { "<leader>t", group = "Toggle" },
+        { "<leader>z", group = "Zen" },
+        { "<leader>m", group = "Markdown" },
+        { "<leader>n", group = "New" },
+        { "<leader>r", group = "Index" },
+      },
     },
   },
 }

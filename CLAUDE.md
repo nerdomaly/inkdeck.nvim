@@ -53,5 +53,6 @@ First batch of creative-writing plugins is in, one file per plugin/group under `
 - `oil.lua` — stevearc/oil.nvim for on-demand directory editing (`-`) instead of a persistent sidebar tree; replaces netrw.
 - `which-key.lua` — folke/which-key.nvim, shows a popup of available chords and their descriptions when a key sequence (e.g. `<leader>`) is pressed and paused on.
 - `mini-starter.lua` — nvim-mini/mini.starter, a start screen shown instead of an empty buffer when nvim is launched with no file argument; ASCII-art header plus shortcuts for the telescope/oil actions above. Its own `autoopen` logic decides when to show, not a hand-rolled check.
+- `bufferline.lua` — akinsho/bufferline.nvim, a tab strip for switching between open documents (`]b`/`[b` to cycle, `<leader>bd` to close). Stays hidden until a second listed buffer exists (`always_show_bufferline = false`), so it doesn't show over the mini.starter dashboard or a single-document session. zen-mode.lua forces `showtabline = 0` while zen mode is active so it never bleeds other open buffers into the focused view, restoring the prior value on close.
 
 Not yet picked: anything beyond this batch (e.g. goal tracking beyond a plain word count, thesaurus lookups) — revisit if the need comes up.
