@@ -20,6 +20,7 @@ return {
     opts = {
       header = header,
       items = {
+        { name = "New document", action = "NewPiece", section = "Documents" },
         { name = "Find document", action = "Telescope find_files", section = "Documents" },
         { name = "Grep documents", action = "Telescope live_grep", section = "Documents" },
         { name = "Recent files", action = "Telescope oldfiles", section = "Documents" },
